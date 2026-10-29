@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI로 홈페이지 만들기 | 이세영</title>
+  <!-- 토스 느낌의 한글 폰트: Pretendard -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="ai-homepage.css" />
+</head>
+<body>
+
+  <!-- ========== 상단 고정 메뉴 (header + nav) ========== -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="index.html" class="logo">이세영</a>
+      <nav class="menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="portfolio.html" class="active">Portfolio</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ========== 1. 히어로: 첫 화면 ========== -->
+    <section class="hero">
+      <p class="eyebrow">Portfolio · 인터넷활용 9주차</p>
+      <h1>AI와 함께<br />홈페이지 만들기</h1>
+      <p class="hero-desc">
+        HTML · CSS3 · JavaScript를 배운 뒤, AI에게 초안을 맡기고<br class="pc-only" />
+        제가 직접 읽고 고치는 방식으로 웹페이지를 만들어 봤어요.
+      </p>
+      <!-- 버튼을 누르면 아래 문구가 바뀝니다 (JavaScript 이벤트 실습) -->
+      <div class="hero-card">
+        <p id="heroMessage" class="hero-message">AI는 제작 속도를 높이는 도구예요.</p>
+        <button id="heroButton" class="btn btn-primary">다음 문장 보기</button>
+      </div>
+    </section>
+
+    <!-- ========== 2. 수업 목표 ========== -->
+    <section class="block" id="goals">
+      <h2 class="block-title">이번 수업에서<br />배운 4가지</h2>
+      <div class="grid-2">
+        <article class="card">
+          <span class="num">1</span>
+          <h3>AI 제작 방식 이해</h3>
+          <p>텍스트, 캡처, 그림판 스케치, 손그림 등 입력 방식을 비교했어요.</p>
+        </article>
+        <article class="card">
+          <span class="num">2</span>
+          <h3>HTML·CSS·JS와 연결</h3>
+          <p>AI 결과를 태그 구조, CSS 선택자, JS 이벤트 관점에서 점검했어요.</p>
+        </article>
+        <article class="card">
+          <span class="num">3</span>
+          <h3>프롬프트 작성법</h3>
+          <p>한 번에 완성본을 요구하지 않고 구조 → 디자인 → 기능 → 수정 순서로 요청해요.</p>
+        </article>
+        <article class="card">
+          <span class="num">4</span>
+          <h3>윤리와 저작권</h3>
+          <p>캡처는 참고용으로만 쓰고, 실제 사이트를 그대로 복제하지 않아요.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========== 3. 6가지 제작 방법 (탭) ========== -->
+    <section class="block block-gray" id="methods">
+      <h2 class="block-title">AI로 홈페이지를<br />만드는 6가지 방법</h2>
+      <p class="block-desc">같은 목표라도 AI에게 주는 입력 자료에 따라 만드는 방식이 달라져요.</p>
+
+      <!-- 탭 버튼: data-tab 값으로 아래 패널과 연결됩니다 -->
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="0">텍스트</button>
+        <button class="tab" data-tab="1">캡처</button>
+        <button class="tab" data-tab="2">그림판</button>
+        <button class="tab" data-tab="3">손그림</button>
+        <button class="tab" data-tab="4">코드 수정</button>
+        <button class="tab" data-tab="5">미리보기</button>
+      </div>
+
+      <div class="panel-wrap">
+        <div class="panel active" data-panel="0">
+          <p class="panel-label">방법 1 · 기본 방식</p>
+          <h3>텍스트 프롬프트로 만들기</h3>
+          <p>만들고 싶은 홈페이지의 목적과 구성을 글로 정리한 뒤 AI에게 요청해요.</p>
+          <ul class="check-list">
+            <li>목적, 메뉴, 색상, 기능을 구체적으로 적기</li>
+            <li>header, section, footer 같은 태그를 지정하기</li>
+            <li>HTML → CSS → JavaScript 순서로 나누어 요청하기</li>
+          </ul>
+        </div>
+        <div class="panel" data-panel="1">
+          <p class="panel-label">방법 2 · 이미지 입력</p>
+          <h3>웹사이트 캡처본 참고하기</h3>
+          <p>마음에 드는 화면을 캡처해서 보여주면, 구성과 분위기를 참고한 초안을 만들 수 있어요.</p>
+          <ul class="check-list">
+            <li>캡처: 참고하고 싶은 화면 저장</li>
+            <li>구조 분석: 메뉴, 본문, 카드, 버튼 찾기</li>
+            <li>재구성: 복제가 아닌 비슷한 구조의 새 페이지</li>
+          </ul>
+          <p class="warn">실제 사이트의 디자인, 이미지, 문구를 그대로 베끼면 안 돼요.</p>
+        </div>
+        <div class="panel" data-panel="2">
+          <p class="panel-label">방법 3 · 스케치 입력</p>
+          <h3>그림판·파워포인트 시안으로 만들기</h3>
+          <p>그림을 잘 그릴 필요는 없어요. 박스만 배치해도 AI가 레이아웃을 해석해요.</p>
+          <ul class="check-list">
+            <li>제목, 메뉴, 카드, 이미지 영역을 사각형으로 표시</li>
+            <li>"자기소개", "프로젝트"처럼 영역 이름 적기</li>
+            <li>그림을 첨부하고 HTML/CSS/JS 변환 요청</li>
+          </ul>
+        </div>
+        <div class="panel" data-panel="3">
+          <p class="panel-label">방법 4 · 와이어프레임</p>
+          <h3>손그림 와이어프레임으로 만들기</h3>
+          <p>종이에 대충 그린 화면도 설계도가 돼요. 색보다 "어디에 무엇이 들어가는지"가 중요해요.</p>
+          <ul class="check-list">
+            <li>레이아웃 중심: 박스 위치와 영역 구성</li>
+            <li>내 아이디어 반영: AI는 내 설계를 구현할 뿐</li>
+            <li>코드 수정 학습: 배치, 여백, 정렬을 직접 조정</li>
+          </ul>
+        </div>
+        <div class="panel" data-panel="4">
+          <p class="panel-label">방법 5 · 코드 개선</p>
+          <h3>기존 코드 수정·확장하기</h3>
+          <p>이미 작성한 코드의 문제를 찾고 개선하는 데도 AI를 쓸 수 있어요.</p>
+          <ul class="check-list">
+            <li>어떤 부분이 오류인지 먼저 설명해 달라고 하기</li>
+            <li>CSS 선택자와 JS 이벤트 연결을 특히 확인</li>
+            <li>고친 결과를 그대로 믿지 말고 직접 실행해 보기</li>
+          </ul>
+        </div>
+        <div class="panel" data-panel="5">
+          <p class="panel-label">방법 6 · 도구 활용</p>
+          <h3>도구별 미리보기 활용하기</h3>
+          <p>Canvas, 웹 기반 에디터, VS Code 보조 도구로 결과를 바로 확인해요.</p>
+          <ul class="check-list">
+            <li>생성된 코드를 바로 브라우저에서 열어보기</li>
+            <li>어색한 부분을 눈으로 확인하고 다시 요청</li>
+            <li>최종 파일은 직접 정리해서 저장</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 4. 프롬프트 만들기 (입력 → 결과) ========== -->
+    <section class="block" id="builder">
+      <h2 class="block-title">좋은 프롬프트,<br />직접 만들어 보세요</h2>
+      <p class="block-desc">좋은 프롬프트는 목적, 조건, 난이도, 출력 형식을 함께 알려줘요.</p>
+
+      <div class="builder">
+        <div class="field">
+          <label for="purpose">무엇을 만들까요?</label>
+          <select id="purpose">
+            <option value="대학생 포트폴리오">대학생 포트폴리오</option>
+            <option value="동아리 소개">동아리 소개</option>
+            <option value="카페 소개">카페 소개</option>
+            <option value="학과 소개">학과 소개</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>어떤 단계를 요청할까요?</label>
+          <div class="chips" id="stepChips">
+            <button class="chip active" data-value="html">구조 (HTML)</button>
+            <button class="chip" data-value="css">디자인 (CSS)</button>
+            <button class="chip" data-value="js">기능 (JS)</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>난이도</label>
+          <div class="chips" id="levelChips">
+            <button class="chip active" data-value="초보자">초보자</button>
+            <button class="chip" data-value="중급자">중급자</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="toggle">
+            <input type="checkbox" id="commentCheck" checked />
+            <span>초보자가 이해할 수 있게 주석 달아 달라고 하기</span>
+          </label>
+        </div>
+
+        <div class="result">
+          <div class="result-head">
+            <span>완성된 프롬프트</span>
+            <button id="copyButton" class="btn btn-small">복사하기</button>
+          </div>
+          <pre id="promptResult"></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 5. 실습 흐름 (체크리스트 + 진행률) ========== -->
+    <section class="block block-gray" id="flow">
+      <h2 class="block-title">실습은 이렇게<br />진행했어요</h2>
+      <p class="block-desc">기획 → 시안 → 코드 생성 → 검토 → 수정. 끝낸 단계를 눌러 체크해 보세요.</p>
+
+      <div class="progress-box">
+        <div class="progress-text"><span id="progressCount">0</span> / 6 단계 완료</div>
+        <div class="progress-bar"><div id="progressFill" class="progress-fill"></div></div>
+      </div>
+
+      <ol class="steps" id="steps">
+        <li class="step"><span class="step-dot">1</span><div><strong>주제 정하기</strong><p>포트폴리오, 동아리, 카페, 학과 소개 등</p></div></li>
+        <li class="step"><span class="step-dot">2</span><div><strong>시안 만들기</strong><p>텍스트·캡처·그림판·손그림 중 선택</p></div></li>
+        <li class="step"><span class="step-dot">3</span><div><strong>AI에게 요청</strong><p>HTML → CSS → JavaScript 순서로 생성</p></div></li>
+        <li class="step"><span class="step-dot">4</span><div><strong>실행 확인</strong><p>브라우저에서 열고 오류와 어색한 부분 점검</p></div></li>
+        <li class="step"><span class="step-dot">5</span><div><strong>직접 수정</strong><p>색상, 여백, 문구, 기능을 내가 변경</p></div></li>
+        <li class="step"><span class="step-dot">6</span><div><strong>설명 제출</strong><p>사용한 프롬프트와 수정한 부분 정리</p></div></li>
+      </ol>
+    </section>
+
+    <!-- ========== 6. 이 페이지를 만든 과정 (설명 제출용) ========== -->
+    <section class="block" id="process">
+      <h2 class="block-title">이 페이지는<br />이렇게 만들었어요</h2>
+
+      <div class="grid-2">
+        <article class="card">
+          <h3>사용한 방법</h3>
+          <p>방법 1(텍스트 프롬프트)로 시작했어요. 수업 자료 내용을 정리해 넣고, "토스 앱처럼 흰 배경·큰 제목·둥근 카드" 스타일로 요청했어요.</p>
+        </article>
+        <article class="card">
+          <h3>요청 순서</h3>
+          <p>① HTML 구조(header, nav, main, section, footer) → ② CSS 카드형 레이아웃 → ③ 탭·프롬프트 생성기·체크리스트 JavaScript 기능 순서로 나누어 요청했어요.</p>
+        </article>
+        <article class="card">
+          <h3>직접 확인한 부분</h3>
+          <p>브라우저와 모바일 폭에서 열어 보고, 탭 버튼의 <code>data-tab</code> 값과 패널의 <code>data-panel</code> 값이 맞게 연결되는지 확인했어요.</p>
+        </article>
+        <article class="card">
+          <h3>지켜야 할 점</h3>
+          <p>토스의 로고, 이미지, 문구는 쓰지 않고 분위기(색감·여백·글자 크기)만 참고했어요.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========== 7. 핵심 정리 ========== -->
+    <section class="summary">
+      <p class="summary-small">핵심 정리</p>
+      <h2>AI는 초안을 빠르게 만드는 도구,<br /><span class="blue">최종 이해와 수정은 사람의 몫</span></h2>
+      <a href="portfolio.html" class="btn btn-primary btn-large">포트폴리오로 돌아가기</a>
+    </section>
+
+  </main>
+
+  <footer class="foot">
+    <small>&copy; <span id="year"></span> 이세영 · 광운대학교 인터넷활용 실습</small>
+  </footer>
+
+  <script src="ai-homepage.js"></script>
+</body>
+</html>
