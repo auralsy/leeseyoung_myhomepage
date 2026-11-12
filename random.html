@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>식사 랜덤 뽑기 - 인터넷활용 실습</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>이세영</h1>
+  <p class="subtitle">사업에 도전중인 백엔드 개발자 이세영입니다.</p>
+</header>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="contact.html">Contact</a>
+</nav>
+<main class="container">
+<section>
+  <h2>String + Array + Math 조합: 식사 랜덤 뽑기</h2>
+
+  <script>
+    // 3. 콤마로 구분된 항목을 문자열로 입력받기
+    let inputString = prompt("항목을 콤마(,)로 구분하여 입력하세요", "짜장면,짬뽕,제육볶음");
+
+    // 4. 취소했거나 비어 있으면 뽑기 취소
+    if (!inputString) {
+      document.write("<h3>뽑기를 취소했습니다.</h3>");
+    } else {
+      // 5. split(',')으로 문자열 → 배열
+      let items = inputString.split(',');
+
+      // 6~7. 0 ~ (배열 길이 - 1) 사이의 랜덤 정수
+      let index = Math.floor(Math.random() * items.length);
+
+      // 8. index번째 항목 꺼내기
+      let choice = items[index];
+
+      // 9. 양쪽 공백 제거
+      choice = choice.trim();
+
+      // 10. 결과 출력
+      document.write("<h3>입력한 항목 (총 " + items.length + "개)</h3>");
+      document.write("<p>" + inputString + "</p>");
+      document.write("<hr>");
+      document.write("<h3>오늘의 선택은...</h3>");
+      document.write("<h1>" + choice + "</h1>");
+      document.write("<p><i>새로고침(F5)을 눌러 다시 뽑을 수 있습니다.</i></p>");
+    }
+  </script>
+
+</section>
+</main>
+<footer>
+  <small>&copy; <span id="year"></span> 이세영(aura_230)</small>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
