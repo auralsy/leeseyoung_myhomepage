@@ -22,33 +22,25 @@
   <h2>Date 객체 활용: D-Day 계산기</h2>
 
   <script>
-    // 3. 오늘 날짜 객체 생성
     let now = new Date();
-
-    // 4. prompt()로 연, 월, 일을 문자열로 입력받기
+    
     let yearStr = prompt("목표 연도를 입력하세요 (예: 2026)", "2026");
     let monthStr = prompt("목표 월을 입력하세요 (1~12)", "12");
     let dayStr = prompt("목표 일을 입력하세요 (1~31)", "25");
 
-    // 5. 취소했거나 비어 있으면 계산 취소
     if (!yearStr || !monthStr || !dayStr) {
       document.write("<h3>계산을 취소했습니다.</h3>");
     } else {
-      // 6. parseInt()로 문자열 → 숫자 변환
       let year = parseInt(yearStr);
       let month = parseInt(monthStr);
       let day = parseInt(dayStr);
 
-      // 7. 목표 날짜 객체 생성 (월은 0부터 시작하므로 1을 뺌)
       let targetDate = new Date(year, month - 1, day);
 
-      // 8. 두 날짜의 차이(밀리초)
       let diffMs = targetDate.getTime() - now.getTime();
 
-      // 9. 밀리초 → 일 단위, Math.ceil()로 올림
       let diffDay = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
 
-      // 10. 결과 출력
       document.write("<h3>목표 날짜: " + year + "년 " + month + "월 " + day + "일</h3>");
 
       if (diffDay === 0) {
