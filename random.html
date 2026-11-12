@@ -22,26 +22,19 @@
   <h2>String + Array + Math 조합: 식사 랜덤 뽑기</h2>
 
   <script>
-    // 3. 콤마로 구분된 항목을 문자열로 입력받기
     let inputString = prompt("항목을 콤마(,)로 구분하여 입력하세요", "짜장면,짬뽕,제육볶음");
 
-    // 4. 취소했거나 비어 있으면 뽑기 취소
     if (!inputString) {
       document.write("<h3>뽑기를 취소했습니다.</h3>");
     } else {
-      // 5. split(',')으로 문자열 → 배열
       let items = inputString.split(',');
 
-      // 6~7. 0 ~ (배열 길이 - 1) 사이의 랜덤 정수
       let index = Math.floor(Math.random() * items.length);
 
-      // 8. index번째 항목 꺼내기
       let choice = items[index];
 
-      // 9. 양쪽 공백 제거
       choice = choice.trim();
 
-      // 10. 결과 출력
       document.write("<h3>입력한 항목 (총 " + items.length + "개)</h3>");
       document.write("<p>" + inputString + "</p>");
       document.write("<hr>");
